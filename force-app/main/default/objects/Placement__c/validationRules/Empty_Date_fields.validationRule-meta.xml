@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Empty_Date_fields</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISBLANK( Start_Date__c ) ||  ISBLANK( End_Date__c  )</errorConditionFormula>
+    <errorMessage>Date fields can not be empty</errorMessage>
+</ValidationRule>
