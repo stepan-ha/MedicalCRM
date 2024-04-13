@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Placement_Error_Message</fullName>
+        <categories>Placement</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placement Error Message</shortDescription>
+        <value>It&apos;s not possible to make a booking on those dates as the facility is fully booked</value>
+    </labels>
+</CustomLabels>
