@@ -1,0 +1,186 @@
+<apex:page controller="MedicinePDFController" renderAs="pdf" standardStylesheets="false" showHeader="false" Applyhtmltag="false">
+
+<head>
+    <style type="text/css">
+      table.gridtable {
+        font-family: verdana,sans-serif;
+        font-size:11pt;
+        color:#333333;
+        width: 100%;        
+        border-spacing: 0px;
+        table-layout:fixed;        
+      }
+      table.gridtable th {
+        background-color: #dedede;
+      }
+      .gridtablerow {
+        border-width: 1px;
+        background-color: #dedede;
+      }
+
+      table, th, td {
+        border: 1px solid;
+    }
+      
+      .descriptionCol {
+        width: 50%;
+        text-align: left;
+      }
+
+      td > .overflowDiv {
+        max-width: 99%;
+        
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .dateCol {
+        width: 15%;
+        text-align: center;
+      }
+      .hourCol {
+        width: 15%;
+        text-align: center;
+      }
+      .totalCol {
+        width: 20%;
+        text-align: right;
+      }
+      
+
+      content {
+        font-family: verdana,sans-serif;
+        
+      }
+      
+      @page {        
+        size: 8.27in 11.69in;
+        margin-top: 15%;  
+        
+        @top-right {
+          position: absolute;
+          content: element(header);
+        }     
+      
+        @bottom-center {
+          
+          position: absolute; 
+          content: element(footer);
+                 
+        }        
+      }     
+
+      div.header {     
+         margin-left: 440px;      
+         position: running(header);              
+      }
+        
+      div.content {
+        	
+            }
+        
+    div.footer{
+     display: block;     
+     margin-left: -50px;
+     margin-top: -150px;
+     position: running(footer);
+     
+    }
+    .pagecount:before {
+
+    content:  "Page " counter(page) " of " counter(pages);
+
+    
+
+}
+  
+      
+    </style>
+    
+  </head>
+  <!--header class="header" width="20px" height="auto" style="position: relative; left: 20%;">
+    <br/>
+    <img class="logo" src="{!$Resource.Logo}" border="0"  />
+</header-->
+
+    <div class="footer" >
+
+   
+        
+            <apex:outputLabel for="name" value="Doctor Name: " style="margin: 20px;"/>
+            <apex:outputText  value="{!doctorName}" />
+          
+      <img  width="800px" height="150px" src="{!$Resource[footerImage]}" title="logo" />
+      <div class="pagecount" style="margin-left:690px"></div>
+
+    </div>
+
+
+  <div class="header">
+      <img src="{!$Resource[logoImage]}" style="width:140px;float:right" />
+      <br/>
+    
+  </div>
+  <div class="content">
+        
+    
+      <apex:pageBlock id="declarationsPB">
+           <div style ="text-align: center;
+    font-family: verdana,sans-serif;
+    font-size:35pt;
+    font-weight: bold;">
+     
+
+    Prescription<br/>
+    </div>
+    
+    <span style="font-family: Verdana, sans-serif; font-size:11pt; text-align: left; display: inline-block; width: 35%;">
+        
+        <apex:outputLabel value="Date: "/>
+        <apex:outputText value="{0,date,dd'-'MM'-'yyyy}">
+          <apex:param value="{!Today()}"/>
+        </apex:outputText>
+        <br/>
+        <apex:outputLabel for="name" value="Patient Name: "/>
+        <apex:outputText id="name" value="{!patientName}" />
+        <br/>
+        
+      </span>
+      <br/>
+      <br/>
+      <div style="page-break-inside : auto; page-break-after:auto;">
+        <h2>List Of Medicines</h2>
+        <table class="gridtable" >
+            <tr>
+                <th>Medication Name</th>
+                <th>Medication Dosage</th>
+                <th>Dosage Form</th>
+                <th>Frequency</th>
+              </tr>
+            <apex:repeat value="{!medicineWrapperList}" var="listitem" >
+              <tr>
+                <td class="descriptionCol"><div class="overflowDiv" >{!listitem.Name}</div></td>
+                <td class="dateCol">
+                  <apex:outputText value="{!listitem.dosage}">
+                  </apex:outputText>
+                </td>
+                <td class="dateCol">
+                    <apex:outputText value="{!listitem.dosageForm}">
+                    </apex:outputText>
+                  </td>
+                  <td class="dateCol">
+                    <apex:outputText value="{!listitem.frequency}">
+                    </apex:outputText>
+                  </td>
+              </tr>
+            </apex:repeat>
+        </table>
+      </div>
+ 
+
+  </apex:pageBlock>
+        </div>
+
+
+</apex:page>
