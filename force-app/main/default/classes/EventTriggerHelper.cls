@@ -89,7 +89,8 @@ public without sharing class EventTriggerHelper {
                                     StartDateTime = eventItem.StartDateTime, 
                                     EndDateTime = eventItem.EndDateTime,
                                     OwnerId = contactToUserMap.get(eventItem.WhoId),
-                                    isCoppy__c = true));
+                                    isCoppy__c = true,
+                                    Copy_From_Entity__c = eventItem.Id));
 
         }
 
@@ -98,5 +99,40 @@ public without sharing class EventTriggerHelper {
         insert newEvents;
 
     }
+
+
+    /*public static void updateShareEvent(Map<Id, Event> eventsNewMap, Map<Id, Event> eventsOldMap){
+
+        Map<Id, Id> eventToEntity = new Map<Id, Id>();
+
+        for(Id oldEventItemId : eventsOldMap.keySet()){
+
+            eventToEntity.put(Id, eventsOldMap.get(oldEventItemId).Copy_From_Entity__c!=null?
+                                    eventsOldMap.get(oldEventItemId).Copy_From_Entity__c:
+                                    eventsOldMap.get(oldEventItemId).Id);
+
+        }
+
+        Map<Id, Event> relatedEventList = new Map<Id, Event>([SELECT Id, Copy_From_Entity__c, Start_Date__c, End_Date__c, Description 
+                                                            FROM Event
+                                                            WHERE Id IN: eventToEntity.keySet()
+                                                            OR Copy_From_Entity__c IN: eventToEntity.keySet()]);
+
+        List<Event> eventsToUpdate = new List<Event>();
+
+        for(Id relatedEventItemId : relatedEventList.keySet()){
+
+            if(!eventsNewMap.containsKey(relatedEventItemId)){
+                
+                eventsToUpdate.add(new Event (Id = relatedEventItemId,
+                                                ));
+
+            }
+
+        }
+
+
+    }*/
+
 
 }

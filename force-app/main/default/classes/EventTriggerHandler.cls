@@ -26,6 +26,9 @@ public without sharing class EventTriggerHandler {
                                     Map<Id, Event> eventsNewMap,
                                     List<Event> eventsOld,
                                     Map<Id, Event> eventsOldMap){
+
+
+        //EventTriggerHelper.updateShareEvent(eventsNewMap, eventsOldMap);
         
     }
 }
