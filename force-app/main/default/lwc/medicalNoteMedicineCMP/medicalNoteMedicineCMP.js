@@ -90,7 +90,7 @@ export default class MedicalNoteMedicineCMP extends LightningElement {
 
         console.log('Generate PDF');
 
-        
+        window.open('/apex/MedicinePDF?medicalNoteId='+this.recordId);
 
     }
 

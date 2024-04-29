@@ -107,9 +107,6 @@
     <div class="footer" >
 
    
-        
-            <apex:outputLabel for="name" value="Doctor Name: " style="margin: 20px;"/>
-            <apex:outputText  value="{!doctorName}" />
           
       <img  width="800px" height="150px" src="{!$Resource[footerImage]}" title="logo" />
       <div class="pagecount" style="margin-left:690px"></div>
@@ -180,6 +177,11 @@
  
 
   </apex:pageBlock>
+        </div>
+
+        <div style="margin-top: 20px;margin-left: 15px;">
+            <apex:outputLabel for="name" value="Doctor Name: " style="margin: 20px;"/>
+            <apex:outputText  value="{!doctorName}" />
         </div>
 
 
