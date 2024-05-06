@@ -1,0 +1,27 @@
+<template>
+    
+        <span class="slds-pill">
+             <lightning-icon 
+                                icon-name="utility:recipe" 
+                                alternative-text="Medication" 
+                                title="Medication">
+                </lightning-icon>
+                <div class="slds-p-horiontal_xxx-small">
+                    <span class="slds-pill__label" title="Full pill label verbiage mirrored here">{name}</span>
+                </div>
+            <span class="slds-icon_container slds-pill__remove" title="Remove">
+                <lightning-icon 
+                                icon-name="utility:close" 
+                                alternative-text="Remove" 
+                                title="Remove"
+                                onmouseenter={handlerIconEnter}
+                                onmouseleave={handlerIconLeave}
+                                onclick={handlerRemove}>
+                </lightning-icon>
+            </span>
+        </span>
+    
+   <!--
+
+   --> 
+</template>
