@@ -7,8 +7,7 @@ public with sharing class MedicinePDFController {
 
     public List<MedicineWrapper> medicineWrapperList{get{
 
-        if(medicalNoteItem==null)
-            medicalNoteItem = [SELECT Id, Medicine__c, Medical_History__r.Patient__r.Name, Medical_History__r.Doctor__r.Name FROM Medical_Note__c WHERE Id =: medicalNoteId LIMIT 1];
+        if(medicalNoteItem==null)medicalNoteItem = [SELECT Id, Medicine__c, Medical_History__r.Patient__r.Name, Medical_History__r.Doctor__r.Name FROM Medical_Note__c WHERE Id =: medicalNoteId LIMIT 1];
 
         return medicalNoteItem.Medicine__c!=null?(List<MedicineWrapper>) JSON.deserialize(medicalNoteItem.Medicine__c, List<MedicineWrapper>.class):new List<MedicineWrapper>();
     } set;}
@@ -30,8 +29,7 @@ public with sharing class MedicinePDFController {
 
     public String patientName{get{
         
-        if(medicalNoteItem==null)
-            medicalNoteItem = [SELECT Id, Medicine__c, Medical_History__r.Patient__r.Name, Medical_History__r.Doctor__r.Name FROM Medical_Note__c WHERE Id =: medicalNoteId LIMIT 1];
+        if(medicalNoteItem==null)medicalNoteItem = [SELECT Id, Medicine__c, Medical_History__r.Patient__r.Name, Medical_History__r.Doctor__r.Name FROM Medical_Note__c WHERE Id =: medicalNoteId LIMIT 1];
 
         return medicalNoteItem.Medical_History__r.Patient__r.Name;
 
@@ -39,8 +37,7 @@ public with sharing class MedicinePDFController {
 
     public String doctorName{get{
         
-        if(medicalNoteItem==null)
-            medicalNoteItem = [SELECT Id, Medicine__c, Medical_History__r.Patient__r.Name, Medical_History__r.Doctor__r.Name FROM Medical_Note__c WHERE Id =: medicalNoteId LIMIT 1];
+        if(medicalNoteItem==null)medicalNoteItem = [SELECT Id, Medicine__c, Medical_History__r.Patient__r.Name, Medical_History__r.Doctor__r.Name FROM Medical_Note__c WHERE Id =: medicalNoteId LIMIT 1];
 
         return medicalNoteItem.Medical_History__r.Doctor__r.Name;
 

@@ -46,9 +46,26 @@ private class MedicinePDFControllerTest {
                                         FROM Medical_Note__c 
                                         LIMIT 1];
 
-        pageRef.put('medicalNoteId', medicalNote.Id);
+        pageRef.getParameters().put('medicalNoteId', String.valueOf(medicalNote.Id));
 
-        System.assertNotEquals(null, controller.medicalNoteItem);
+        System.assertEquals(6, controller.medicineWrapperList.size());
+        System.assertEquals(medicalNote.id, controller.medicalNoteId);
+        System.assertNotEquals(null, controller.logoImage);
+        System.assertNotEquals(null, controller.footerImage);
+        System.assertNotEquals(null, controller.watermarkImage);
+        System.assertNotEquals(null, controller.patientName);
+        System.assertNotEquals(null, controller.doctorName);
+
+        System.assertNotEquals(null, controller.medicineWrapperList[0].id);
+        System.assertNotEquals(null, controller.medicineWrapperList[0].name);
+        System.assertNotEquals(null, controller.medicineWrapperList[0].dosage);
+        System.assertNotEquals(null, controller.medicineWrapperList[0].dosageForm);
+        System.assertNotEquals(null, controller.medicineWrapperList[0].frequency);
+
+
+
+
+
         
     }
 }

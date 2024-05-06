@@ -3,7 +3,7 @@ public with sharing class InvocableSendMedicalPDFToPatient {
     @InvocableMethod(label='Send PDF to Patient')
     public static void sendPDF(List<String> medicalNoteId){
 
-        Blob pdfFile = new PageReference('/apex/MedicinePDF?medicalNoteId='+medicalNoteId[0]).getContentAsPDF();
+        Blob pdfFile = Test.isRunningTest()?Blob.valueOf('test'):new PageReference('/apex/MedicinePDF?medicalNoteId='+medicalNoteId[0]).getContentAsPDF();
 
         Medical_Note__c medicalNoteItem = [SELECT Id, Medicine__c, Medical_History__r.Patient__r.Name, Medical_History__r.Patient__r.Email, 
                                                     Medical_History__r.Doctor__r.Name, Medical_History__r.Doctor__r.Email 
