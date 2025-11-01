@@ -1,0 +1,17 @@
+.customTooltip{
+    width: 200px;
+    text-align: start !important;
+    z-index: 999;
+    opacity: 1;
+    white-space:pre-wrap;
+    display: none;
+}
+
+.fileDiv:hover + .customTooltip{
+    display:block;
+    position: fixed;
+}
+
+:host{
+    position: relative;
+}

@@ -1,0 +1,26 @@
+<!--
+  @description       : 
+  @author            : Nazar Tsybulskii
+  @group             : 
+  @last modified on  : 15-10-2025
+  @last modified by  : Nazar Tsybulskii
+-->
+<template>
+    <lightning-modal-header label={type}></lightning-modal-header>
+    <lightning-modal-body> 
+        <div>
+            Do you want to {type} {getContent} 
+        </div>
+        <div class="slds-grid_vertical">
+            <template for:each={items} for:item="item">
+                <div key={item.id} class="slds-col">
+                    {item.name}
+                </div>
+            </template>
+        </div>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="OK" onclick={handleOkay}></lightning-button>
+        <lightning-button label="Close" onclick={handleClose}></lightning-button>
+    </lightning-modal-footer>
+</template>

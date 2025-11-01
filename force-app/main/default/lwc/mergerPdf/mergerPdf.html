@@ -1,0 +1,44 @@
+<template>
+    <template lwc:if={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+    <lightning-card title={cardTitle}>
+        <div class="slds-p-around_small">
+            <div class="drop-zone slds-p-around_medium slds-border_dashed slds-text-align_center"
+                 ondragover={handleDragOver} ondrop={handleDrop}>
+                Drag PDF files here from Resource Center or
+                <lightning-button class="slds-m-left_x-small" variant="neutral" label="Upload PDF"
+                                  onclick={openFileDialog}></lightning-button>
+                <input type="file" accept="application/pdf" multiple class="slds-hide" onchange={handleLocalUpload} />
+            </div>
+            <template lwc:if={droppedPdfs.length}>
+                <ul class="slds-m-top_small">
+                    <template for:each={droppedPdfs} for:item="pdf" for:index="index">
+                        <li key={pdf.id} class="pdf-row slds-grid slds-p-vertical_x-small"
+                            draggable="true" data-index={index}
+                            ondragstart={handleRowDragStart} ondragover={handleRowDragOver} ondrop={handleRowDrop}>
+                            <div class="slds-col slds-size_1-of-12 slds-align_absolute-center">
+                                <c-rc-icon path="SharePointIcons/pdf.png" size="40"></c-rc-icon>
+                            </div>
+                            <div class="slds-col slds-size_9-of-12 slds-truncate">{pdf.name}</div>
+                            <div class="slds-col slds-size_2-of-12 slds-text-align_right">
+                                <lightning-button-icon icon-name="utility:close" alternative-text="Remove" title="Remove" data-index={index}
+                                                       onclick={handleRemove}></lightning-button-icon>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            
+        </div>
+        <div slot="footer" class="slds-p-around_x-small">
+            <lightning-button label="Clear" onclick={handleClear}></lightning-button>
+            <lightning-button class="slds-m-left_x-small" variant="brand" label={mergeTitle} onclick={handleMergePdf}
+                              disabled={isMergeDisabled}></lightning-button>
+            <lightning-button class="slds-m-left_x-small" variant="neutral" label="Preview"
+                              onclick={handlePreview} disabled={isMergeDisabled}></lightning-button>
+            <lightning-button class="slds-m-left_x-small" variant="neutral" label="Download"
+                              onclick={handleDownloadMerged} disabled={isMergeDisabled}></lightning-button>
+        </div>
+    </lightning-card>
+</template>
