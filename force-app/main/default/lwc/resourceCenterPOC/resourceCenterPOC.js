@@ -53,7 +53,7 @@ export default class SharepointDocuments extends LightningElement {
             item.nameToDisplay = item.name.length<55?item.name:item.name.slice(0,54)+'...';
             item.hiden = false;
             item.createdDateTime = new Date(item.createdDateTime).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
-            item.lastModifiedBy = item.lastModifiedBy.user.displayName!='SharePoint App'? item.lastModifiedBy.user.displayName:item.listItem.fields.LastModifiedBy?item.listItem.fields.LastModifiedBy:'';
+            item.lastModifiedBy = 'Stepan Halaiko';
             if(item.folder!=null||item.folder!=undefined){
                 item.iconName = 'folder.png';
             }
