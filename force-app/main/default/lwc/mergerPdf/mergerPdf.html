@@ -1,13 +1,13 @@
 <template>
     <template lwc:if={isLoading}>
-        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        <lightning-spinner alternative-text="Завантаження" size="medium"></lightning-spinner>
     </template>
     <lightning-card title={cardTitle}>
         <div class="slds-p-around_small">
             <div class="drop-zone slds-p-around_medium slds-border_dashed slds-text-align_center"
                  ondragover={handleDragOver} ondrop={handleDrop}>
-                Drag PDF files here from Resource Center or
-                <lightning-button class="slds-m-left_x-small" variant="neutral" label="Upload PDF"
+                Перетягніть PDF файли сюди з Центру ресурсів або
+                <lightning-button class="slds-m-left_x-small" variant="neutral" label="Завантажити PDF"
                                   onclick={openFileDialog}></lightning-button>
                 <input type="file" accept="application/pdf" multiple class="slds-hide" onchange={handleLocalUpload} />
             </div>
@@ -22,7 +22,7 @@
                             </div>
                             <div class="slds-col slds-size_9-of-12 slds-truncate">{pdf.name}</div>
                             <div class="slds-col slds-size_2-of-12 slds-text-align_right">
-                                <lightning-button-icon icon-name="utility:close" alternative-text="Remove" title="Remove" data-index={index}
+                                <lightning-button-icon icon-name="utility:close" alternative-text="Видалити" title="Видалити" data-index={index}
                                                        onclick={handleRemove}></lightning-button-icon>
                             </div>
                         </li>
@@ -32,12 +32,12 @@
             
         </div>
         <div slot="footer" class="slds-p-around_x-small">
-            <lightning-button label="Clear" onclick={handleClear}></lightning-button>
+            <lightning-button label="Очистити" onclick={handleClear}></lightning-button>
             <lightning-button class="slds-m-left_x-small" variant="brand" label={mergeTitle} onclick={handleMergePdf}
                               disabled={isMergeDisabled}></lightning-button>
-            <lightning-button class="slds-m-left_x-small" variant="neutral" label="Preview"
+            <lightning-button class="slds-m-left_x-small" variant="neutral" label="Перегляд"
                               onclick={handlePreview} disabled={isMergeDisabled}></lightning-button>
-            <lightning-button class="slds-m-left_x-small" variant="neutral" label="Download"
+            <lightning-button class="slds-m-left_x-small" variant="neutral" label="Завантажити"
                               onclick={handleDownloadMerged} disabled={isMergeDisabled}></lightning-button>
         </div>
     </lightning-card>

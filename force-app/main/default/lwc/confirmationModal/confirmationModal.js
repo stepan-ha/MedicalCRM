@@ -9,10 +9,10 @@ export default class ConfirmationModal extends LightningModal {
 
     get getContent(){
         if(this.items.length>1){
-            return 'these items: ';
+            return 'ці елементи: ';
         }
         else{
-            return 'this item: ';
+            return 'цей елемент: ';
         }
     }
 

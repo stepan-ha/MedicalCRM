@@ -8,12 +8,12 @@ export default class RcFilterPanel extends LightningElement {
 
 	get typeOptions() {
 		return [
-			{ label: 'All', value: '' },
+			{ label: 'Всі', value: '' },
 			{ label: 'PDF', value: 'pdf' },
 			{ label: 'Word', value: 'docx' },
 			{ label: 'Excel', value: 'xlsx' },
-			{ label: 'Image', value: 'image' },
-			{ label: 'Text', value: 'txt' }
+			{ label: 'Зображення', value: 'image' },
+			{ label: 'Текст', value: 'txt' }
 		];
 	}
 
@@ -37,8 +37,8 @@ export default class RcFilterPanel extends LightningElement {
 
 	onToggle(e) {
 		const label = e.target.label;
-		if (label === 'Folders') this.showFolders = e.target.checked;
-		if (label === 'Files') this.showFiles = e.target.checked;
+		if (label === 'Папки') this.showFolders = e.target.checked;
+		if (label === 'Файли') this.showFiles = e.target.checked;
 		this.publishChange();
 	}
 

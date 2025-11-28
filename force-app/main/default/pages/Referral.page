@@ -1,4 +1,4 @@
-<apex:page controller="MedicinePDFController" renderAs="pdf" standardStylesheets="false" showHeader="false" Applyhtmltag="false" contentType="application/pdf#UTF-8">
+<apex:page controller="ReferralController" renderAs="pdf" standardStylesheets="false" showHeader="false" Applyhtmltag="false" contentType="application/pdf#UTF-8">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
@@ -63,7 +63,7 @@
         font-family: "Arial Unicode MS" !important;
       }
       
-      body, div, span, h1, h2, h3, p, table, th, td, label, apex\\:outputLabel, apex\\:outputText {
+      body, div, span, h1, h2, h3, p, table, th, td, label {
         font-family: "Arial Unicode MS" !important;
       }
       
@@ -114,85 +114,53 @@
     </style>
     
   </head>
-  <!--header class="header" width="20px" height="auto" style="position: relative; left: 20%;">
-    <br/>
-    <img class="logo" src="{!$Resource.Logo}" border="0"  />
-</header-->
 
     <div class="footer" >
-
-   
-          
       <img  width="800px" height="150px" src="{!$Resource[footerImage]}" title="logo" />
       <div class="pagecount" style="margin-left:690px"></div>
-
     </div>
-
 
   <div class="header">
       <img src="{!$Resource[logoImage]}" style="width:140px;float:right" />
       <br/>
-    
   </div>
   <div class="content">
-        
-    
       <apex:pageBlock id="declarationsPB">
            <div style ="text-align: center; font-family: 'Arial Unicode MS' !important; font-size:35pt; font-weight: bold;">
-    Рецепт<br/>
+    НАПРАВЛЕННЯ<br/>
     </div>
     
-    <span style="font-family: 'Arial Unicode MS' !important; font-size:11pt; text-align: left; display: inline-block; width: 35%;">
-        
+    <span style="font-family: 'Arial Unicode MS' !important; font-size:11pt; text-align: left; display: inline-block; width: 100%; margin-top: 30px;">
         <apex:outputLabel value="Дата: "/>
         <apex:outputText value="{0,date,dd'-'MM'-'yyyy}">
           <apex:param value="{!Today()}"/>
         </apex:outputText>
-        <br/>
-        <apex:outputLabel for="name" value="Ім'я пацієнта: "/>
+        <br/><br/>
+        
+        <apex:outputLabel for="name" value="Пацієнт: "/>
         <apex:outputText id="name" value="{!patientName}" />
-        <br/>
+        <br/><br/>
+        
+        <apex:outputLabel value="Діагноз: "/>
+        <apex:outputText value="{!diagnosis}" />
+        <br/><br/>
+        
+        <div style="margin-top: 20px; margin-bottom: 20px; line-height: 1.6;">
+            <apex:outputLabel value="Причина направлення та рекомендації:" style="font-weight: bold;"/>
+            <br/><br/>
+            <apex:outputText value="{!referralNotes}" escape="false" />
+        </div>
+        
+        <br/><br/>
+        <div style="margin-top: 40px;">
+            <apex:outputLabel value="Лікар, що направляє: " style="margin: 20px;"/>
+            <apex:outputText value="{!doctorName}" />
+        </div>
         
       </span>
-      <br/>
-      <br/>
-      <div style="page-break-inside : auto; page-break-after:auto;">
-        <h2 style="font-family: 'Arial Unicode MS' !important;">Список медикаментів</h2>
-        <table class="gridtable" >
-            <tr>
-                <th style="font-family: 'Arial Unicode MS' !important;">Назва препарату</th>
-                <th style="font-family: 'Arial Unicode MS' !important;">Дозування</th>
-                <th style="font-family: 'Arial Unicode MS' !important;">Форма дозування</th>
-                <th style="font-family: 'Arial Unicode MS' !important;">Частота</th>
-              </tr>
-            <apex:repeat value="{!medicineWrapperList}" var="listitem" >
-              <tr>
-                <td class="descriptionCol"><div class="overflowDiv" >{!listitem.Name}</div></td>
-                <td class="dateCol">
-                  <apex:outputText value="{!listitem.dosage}">
-                  </apex:outputText>
-                </td>
-                <td class="dateCol">
-                    <apex:outputText value="{!listitem.dosageForm}">
-                    </apex:outputText>
-                  </td>
-                  <td class="dateCol">
-                    <apex:outputText value="{!listitem.frequency}">
-                    </apex:outputText>
-                  </td>
-              </tr>
-            </apex:repeat>
-        </table>
-      </div>
- 
 
   </apex:pageBlock>
         </div>
 
-        <div style="margin-top: 20px;margin-left: 15px; font-family: 'Arial Unicode MS' !important;">
-            <apex:outputLabel for="name" value="Ім'я лікаря: " style="margin: 20px; font-family: 'Arial Unicode MS' !important;"/>
-            <apex:outputText value="{!doctorName}" style="font-family: 'Arial Unicode MS' !important;"/>
-        </div>
-
-
 </apex:page>
+

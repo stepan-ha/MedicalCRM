@@ -73,8 +73,8 @@ export default class MergerPDF extends LightningElement{
         }
         catch(e){
             this.dispatchEvent(new ShowToastEvent({
-                title: 'Error while merging PDF',
-                message: 'Error: ' + e.message,
+                title: 'Помилка при об\'єднанні PDF',
+                message: 'Помилка: ' + e.message,
                 variant: 'error',
             }));
         }
@@ -101,11 +101,11 @@ export default class MergerPDF extends LightningElement{
     }
 
     get cardTitle() {
-        return this.mainTitle ? this.mainTitle : 'Merge PDF Files';
+        return this.mainTitle ? this.mainTitle : 'Об\'єднати PDF файли';
     }
 
     get mergeTitle(){
-        return this.mergeButtonTitle ? this.mergeButtonTitle : 'Merge';
+        return this.mergeButtonTitle ? this.mergeButtonTitle : 'Об\'єднати';
     }
 
     get isMergeDisabled(){
@@ -212,8 +212,8 @@ export default class MergerPDF extends LightningElement{
                 window.open(this.mergedUrl, '_blank');
             }catch(e){
                 this.dispatchEvent(new ShowToastEvent({
-                    title: 'Preview blocked',
-                    message: 'Unable to open preview in a new tab.',
+                    title: 'Перегляд заблоковано',
+                    message: 'Неможливо відкрити перегляд у новій вкладці.',
                     variant: 'warning',
                 }));
             }

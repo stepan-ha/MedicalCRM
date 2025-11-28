@@ -15,7 +15,7 @@
 			</div>
 			<div class="slds-col slds-size_1-of-12" data-id={file.id}>
 				<div class="slds-float_right slds-p-right_xx-small">
-					<lightning-button-menu alternative-text="Row actions" variant="border-filled" menu-alignment="right">
+					<lightning-button-menu alternative-text="Дії з рядком" variant="border-filled" menu-alignment="right">
 						<template for:each={actions} for:item="action">
 							<lightning-menu-item key={action} value={action} label={action} data-id={file.id} onclick={onAction}></lightning-menu-item>
 						</template>

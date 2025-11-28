@@ -103,7 +103,7 @@ export default class SharepointDocuments extends LightningElement {
       .then(result =>{
         console.log("result: ", JSON.stringify(result));
         if(result==null){
-          this.showToast('Error', 'Something went wrong contact your Administrator', 'error');
+          this.showToast('Помилка', 'Щось пішло не так, зверніться до адміністратора', 'error');
           return;
         }
         this.data = this.parseResponce(result.value);
@@ -189,7 +189,7 @@ export default class SharepointDocuments extends LightningElement {
         previewItem({siteId: this.siteId, driveId: this.driveId, itemId: itemId, token: this.TOKEN})
         .then(output=>{
             if(output==null){
-              this.showToast('Error', 'Something went wrong contact your Administrator', 'error');
+              this.showToast('Помилка', 'Щось пішло не так, зверніться до адміністратора', 'error');
               return;
             }
             let previewItem = output;
@@ -205,9 +205,9 @@ export default class SharepointDocuments extends LightningElement {
         let itemId = event.target.dataset.id;
         createFolderModal.open({
             size: 'medium',
-            label: 'Rename the Folder',
-            buttonLabel: 'Rename',
-            bodyLabel: 'Enter folder Name',
+            label: 'Перейменувати папку',
+            buttonLabel: 'Перейменувати',
+            bodyLabel: 'Введіть назву папки',
             inputType: 'text',
             oldValue: this.data.filter(item=>item.id === itemId)[0].name
           }).then((result) => {
@@ -217,7 +217,7 @@ export default class SharepointDocuments extends LightningElement {
                 renameItem({siteId: this.siteId, driveId: this.driveId, itemId: itemId, token: this.TOKEN, newName: result})
                 .then(output=>{
                     this.reload(this.folderPath[this.folderPath.length-1].id);
-                    this.showToast('Success', 'The item was successfully renamed!', 'success');
+                    this.showToast('Успіх', 'Елемент успішно перейменовано!', 'success');
                 })
                 .catch(error=>{
                     console.error(error);
@@ -231,7 +231,7 @@ export default class SharepointDocuments extends LightningElement {
         toModal.push(item);
         confirmationModal.open({
             size: 'medium',
-            type: 'Delete',
+            type: 'Видалити',
             items: toModal
           })
           .then((result) => {
@@ -239,7 +239,7 @@ export default class SharepointDocuments extends LightningElement {
                 deleteItem({siteId: this.siteId, driveId: this.driveId, itemId: item.id, token: this.TOKEN})
                 .then(output=>{
                     this.reload(this.folderPath[this.folderPath.length-1].id);
-                    this.showToast('Success', 'The item was successfully deleted!', 'success');
+                    this.showToast('Успіх', 'Елемент успішно видалено!', 'success');
                 })
                 .catch(error=>{
                     console.error(error);
@@ -326,7 +326,7 @@ export default class SharepointDocuments extends LightningElement {
     }
 
     get rowActions(){
-      return ['Open','Download'];
+      return ['Відкрити','Завантажити'];
     }
 
     get selectedPdfItems(){
@@ -339,14 +339,14 @@ export default class SharepointDocuments extends LightningElement {
       const { action, id } = event.detail;
       const file = this.data.find(d=>d.id===id);
       if(!file) return;
-      if(action==='Open'){
+      if(action==='Відкрити'){
         if(file.folder){
           this.openFolder(file, false);
         } else {
           this.openPreview(file);
         }
       }
-      if(action==='Download' && file.downloadUrl){
+      if(action==='Завантажити' && file.downloadUrl){
         this.downloadFile(file.downloadUrl, '_blank');
       }
     }

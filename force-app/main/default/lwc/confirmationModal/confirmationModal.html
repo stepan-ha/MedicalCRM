@@ -9,7 +9,7 @@
     <lightning-modal-header label={type}></lightning-modal-header>
     <lightning-modal-body> 
         <div>
-            Do you want to {type} {getContent} 
+            Чи хочете ви {type} {getContent} 
         </div>
         <div class="slds-grid_vertical">
             <template for:each={items} for:item="item">
@@ -20,7 +20,7 @@
         </div>
     </lightning-modal-body>
     <lightning-modal-footer>
-        <lightning-button label="OK" onclick={handleOkay}></lightning-button>
-        <lightning-button label="Close" onclick={handleClose}></lightning-button>
+        <lightning-button label="Гаразд" onclick={handleOkay}></lightning-button>
+        <lightning-button label="Закрити" onclick={handleClose}></lightning-button>
     </lightning-modal-footer>
 </template>

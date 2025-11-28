@@ -1,12 +1,12 @@
 <template>
 	<div class="rc-filter slds-p-around_small">
-		<lightning-input type="search" label="Search" value={search} onchange={onSearchChange}></lightning-input>
+		<lightning-input type="search" label="Пошук" value={search} onchange={onSearchChange}></lightning-input>
 		<div class="slds-m-top_small">
-			<lightning-input type="checkbox" label="Folders" checked={showFolders} onchange={onToggle}></lightning-input>
-			<lightning-input type="checkbox" label="Files" checked={showFiles} onchange={onToggle}></lightning-input>
+			<lightning-input type="checkbox" label="Папки" checked={showFolders} onchange={onToggle}></lightning-input>
+			<lightning-input type="checkbox" label="Файли" checked={showFiles} onchange={onToggle}></lightning-input>
 		</div>
 		<div class="slds-m-top_small">
-			<lightning-combobox label="Type" value={type} options={typeOptions} onchange={onTypeChange}></lightning-combobox>
+			<lightning-combobox label="Тип" value={type} options={typeOptions} onchange={onTypeChange}></lightning-combobox>
 		</div>
 	</div>
 </template>

@@ -10,10 +10,10 @@ export default class AddMedicalModal extends LightningModal {
     data;
 
     columns = [
-        { label: 'Name', fieldName: 'name', editable: true },
-        { label: 'Dosage', fieldName: 'dosage', type: 'number', editable: true},
-        { label: 'Dosage Form', fieldName: 'dosageForm', editable: true },
-        { label: 'Frequency /Day', fieldName: 'frequency', editable: true },
+        { label: 'Назва', fieldName: 'name', editable: true },
+        { label: 'Дозування', fieldName: 'dosage', type: 'number', editable: true},
+        { label: 'Форма дозування', fieldName: 'dosageForm', editable: true },
+        { label: 'Частота /День', fieldName: 'frequency', editable: true },
     ];
 
 
@@ -92,8 +92,8 @@ export default class AddMedicalModal extends LightningModal {
     showSuccessMessage() {
         this.dispatchEvent(
           new ShowToastEvent({
-            title: "Success",
-            message: "Kits were successfully updated",
+            title: "Успіх",
+            message: "Комплекти успішно оновлено",
             variant: "success"
           })
         );
