@@ -19,7 +19,8 @@ import previewItem from '@salesforce/apex/SharepointController.previewItem'
 
 export default class SharepointDocuments extends LightningElement {
     
-    @track data = [];
+  @track data = [];
+  @track masterData = [];
 
     @api recordId;
     @api path;
@@ -106,7 +107,10 @@ export default class SharepointDocuments extends LightningElement {
           this.showToast('Помилка', 'Щось пішло не так, зверніться до адміністратора', 'error');
           return;
         }
-        this.data = this.parseResponce(result.value);
+        
+        this.masterData = this.parseResponce(result.value); 
+        this.data = [...this.masterData]; 
+
         this.loaded = false;
       })
     }
@@ -478,8 +482,33 @@ export default class SharepointDocuments extends LightningElement {
     // removed search integration (unused)
 
     handleFilterChange(event){
-      // placeholder for future filter wiring
-      // console.log('filter change', event.detail);
+        const { search, showFolders, showFiles, type } = event.detail;
+        const typeToIconMap = {
+            'pdf': 'pdf.png',
+            'docx': 'docx.png',
+            'xlsx': 'xlsx.png',
+            'image': 'photo.png',
+            'txt': 'txt.png'
+        };
+
+        this.data = this.masterData.filter(item => {
+            const isFolder = (item.folder !== undefined && item.folder !== null);
+            if (isFolder && !showFolders) return false;
+            if (!isFolder && !showFiles) return false;
+
+            if (type && type !== '') {
+                if (isFolder) return false; 
+                if (item.iconName !== typeToIconMap[type]) return false;
+            }
+
+            if (search && search.trim() !== '') {
+                if (!item.name.toLowerCase().includes(search.toLowerCase())) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
     }
 
 }
