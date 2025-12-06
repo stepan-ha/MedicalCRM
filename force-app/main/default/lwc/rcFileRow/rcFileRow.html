@@ -1,0 +1,28 @@
+<template>
+	<div class={containerClass} data-id={file.id} onclick={onSelect} ondblclick={onOpen} draggable="true" ondragstart={onDragStart}>
+		<div class="slds-grid slds-p-bottom_x-small" data-id={file.id}>
+			<div class="slds-col slds-size_1-of-12 slds-align_absolute-center" data-id={file.id}>
+				<c-rc-icon path={iconPath} size="20"></c-rc-icon>
+			</div>
+			<div class="slds-col slds-size_5-of-12" title={file.name} data-id={file.id}>
+				<div class="slds-p-top_xx-small">{file.nameToDisplay}</div>
+			</div>
+			<div class="slds-col slds-size_3-of-12 slds-clearfix" data-id={file.id}>
+				<div class="slds-p-top_xx-small slds-float_left slds-p-left_small">{file.lastModifiedBy}</div>
+			</div>
+			<div class="slds-col slds-size_2-of-12 slds-clearfix" data-id={file.id}>
+				<div class="slds-p-top_xx-small slds-float_left">{file.createdDateTime}</div>
+			</div>
+			<div class="slds-col slds-size_1-of-12" data-id={file.id}>
+				<div class="slds-float_right slds-p-right_xx-small">
+					<lightning-button-menu alternative-text="Дії з рядком" variant="border-filled" menu-alignment="right">
+						<template for:each={actions} for:item="action">
+							<lightning-menu-item key={action} value={action} label={action} data-id={file.id} onclick={onAction}></lightning-menu-item>
+						</template>
+					</lightning-button-menu>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+

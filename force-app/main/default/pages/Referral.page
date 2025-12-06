@@ -1,0 +1,166 @@
+<apex:page controller="ReferralController" renderAs="pdf" standardStylesheets="false" showHeader="false" Applyhtmltag="false" contentType="application/pdf#UTF-8">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      * {
+        font-family: "Arial Unicode MS" !important;
+      }
+      
+      table.gridtable {
+        font-family: "Arial Unicode MS" !important;
+        font-size:11pt;
+        color:#333333;
+        width: 100%;        
+        border-spacing: 0px;
+        table-layout:fixed;        
+      }
+      table.gridtable th {
+        background-color: #dedede;
+        font-family: "Arial Unicode MS" !important;
+      }
+      .gridtablerow {
+        border-width: 1px;
+        background-color: #dedede;
+      }
+
+      table, th, td {
+        border: 1px solid;
+        font-family: "Arial Unicode MS" !important;
+    }
+      
+      .descriptionCol {
+        width: 50%;
+        text-align: left;
+        font-family: "Arial Unicode MS" !important;
+      }
+
+      td > .overflowDiv {
+        max-width: 99%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: "Arial Unicode MS" !important;
+      }
+
+      .dateCol {
+        width: 15%;
+        text-align: center;
+        font-family: "Arial Unicode MS" !important;
+      }
+      .hourCol {
+        width: 15%;
+        text-align: center;
+        font-family: "Arial Unicode MS" !important;
+      }
+      .totalCol {
+        width: 20%;
+        text-align: right;
+        font-family: "Arial Unicode MS" !important;
+      }
+      
+
+      content {
+        font-family: "Arial Unicode MS" !important;
+      }
+      
+      body, div, span, h1, h2, h3, p, table, th, td, label {
+        font-family: "Arial Unicode MS" !important;
+      }
+      
+      @page {        
+        size: 8.27in 11.69in;
+        margin-top: 15%;  
+        
+        @top-right {
+          position: absolute;
+          content: element(header);
+        }     
+      
+        @bottom-center {
+          
+          position: absolute; 
+          content: element(footer);
+                 
+        }        
+      }     
+
+      div.header {     
+         margin-left: 440px;      
+         position: running(header);
+         font-family: "Arial Unicode MS" !important;
+      }
+        
+      div.content {
+        font-family: "Arial Unicode MS" !important;
+      }
+        
+    div.footer{
+     display: block;     
+     margin-left: -50px;
+     margin-top: -150px;
+     position: running(footer);
+     font-family: "Arial Unicode MS" !important;
+    }
+    .pagecount:before {
+    font-family: "Arial Unicode MS" !important;
+    content:  "Сторінка " counter(page) " з " counter(pages);
+    }
+    
+    .pagecount {
+    font-family: "Arial Unicode MS" !important;
+    }
+  
+      
+    </style>
+    
+  </head>
+
+    <div class="footer" >
+      <img  width="800px" height="150px" src="{!$Resource[footerImage]}" title="logo" />
+      <div class="pagecount" style="margin-left:690px"></div>
+    </div>
+
+  <div class="header">
+      <img src="{!$Resource[logoImage]}" style="width:140px;float:right" />
+      <br/>
+  </div>
+  <div class="content">
+      <apex:pageBlock id="declarationsPB">
+           <div style ="text-align: center; font-family: 'Arial Unicode MS' !important; font-size:35pt; font-weight: bold;">
+    НАПРАВЛЕННЯ<br/>
+    </div>
+    
+    <span style="font-family: 'Arial Unicode MS' !important; font-size:11pt; text-align: left; display: inline-block; width: 100%; margin-top: 30px;">
+        <apex:outputLabel value="Дата: "/>
+        <apex:outputText value="{0,date,dd'-'MM'-'yyyy}">
+          <apex:param value="{!Today()}"/>
+        </apex:outputText>
+        <br/><br/>
+        
+        <apex:outputLabel for="name" value="Пацієнт: "/>
+        <apex:outputText id="name" value="{!patientName}" />
+        <br/><br/>
+        
+        <apex:outputLabel value="Діагноз: "/>
+        <apex:outputText value="{!diagnosis}" />
+        <br/><br/>
+        
+        <div style="margin-top: 20px; margin-bottom: 20px; line-height: 1.6;">
+            <apex:outputLabel value="Причина направлення та рекомендації:" style="font-weight: bold;"/>
+            <br/><br/>
+            <apex:outputText value="{!referralNotes}" escape="false" />
+        </div>
+        
+        <br/><br/>
+        <div style="margin-top: 40px;">
+            <apex:outputLabel value="Лікар, що направляє: " style="margin: 20px;"/>
+            <apex:outputText value="{!doctorName}" />
+        </div>
+        
+      </span>
+
+  </apex:pageBlock>
+        </div>
+
+</apex:page>
+

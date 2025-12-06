@@ -1,9 +1,13 @@
-<apex:page controller="MedicinePDFController" renderAs="pdf" standardStylesheets="false" showHeader="false" Applyhtmltag="false">
-
+<apex:page controller="MedicinePDFController" renderAs="pdf" standardStylesheets="false" showHeader="false" Applyhtmltag="false" contentType="application/pdf#UTF-8">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
+      * {
+        font-family: "Arial Unicode MS" !important;
+      }
+      
       table.gridtable {
-        font-family: verdana,sans-serif;
+        font-family: "Arial Unicode MS" !important;
         font-size:11pt;
         color:#333333;
         width: 100%;        
@@ -12,6 +16,7 @@
       }
       table.gridtable th {
         background-color: #dedede;
+        font-family: "Arial Unicode MS" !important;
       }
       .gridtablerow {
         border-width: 1px;
@@ -20,38 +25,46 @@
 
       table, th, td {
         border: 1px solid;
+        font-family: "Arial Unicode MS" !important;
     }
       
       .descriptionCol {
         width: 50%;
         text-align: left;
+        font-family: "Arial Unicode MS" !important;
       }
 
       td > .overflowDiv {
         max-width: 99%;
-        
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-family: "Arial Unicode MS" !important;
       }
 
       .dateCol {
         width: 15%;
         text-align: center;
+        font-family: "Arial Unicode MS" !important;
       }
       .hourCol {
         width: 15%;
         text-align: center;
+        font-family: "Arial Unicode MS" !important;
       }
       .totalCol {
         width: 20%;
         text-align: right;
+        font-family: "Arial Unicode MS" !important;
       }
       
 
       content {
-        font-family: verdana,sans-serif;
-        
+        font-family: "Arial Unicode MS" !important;
+      }
+      
+      body, div, span, h1, h2, h3, p, table, th, td, label, apex\\:outputLabel, apex\\:outputText {
+        font-family: "Arial Unicode MS" !important;
       }
       
       @page {        
@@ -73,27 +86,29 @@
 
       div.header {     
          margin-left: 440px;      
-         position: running(header);              
+         position: running(header);
+         font-family: "Arial Unicode MS" !important;
       }
         
       div.content {
-        	
-            }
+        font-family: "Arial Unicode MS" !important;
+      }
         
     div.footer{
      display: block;     
      margin-left: -50px;
      margin-top: -150px;
      position: running(footer);
-     
+     font-family: "Arial Unicode MS" !important;
     }
     .pagecount:before {
-
-    content:  "Page " counter(page) " of " counter(pages);
-
+    font-family: "Arial Unicode MS" !important;
+    content:  "Сторінка " counter(page) " з " counter(pages);
+    }
     
-
-}
+    .pagecount {
+    font-family: "Arial Unicode MS" !important;
+    }
   
       
     </style>
@@ -123,23 +138,18 @@
         
     
       <apex:pageBlock id="declarationsPB">
-           <div style ="text-align: center;
-    font-family: verdana,sans-serif;
-    font-size:35pt;
-    font-weight: bold;">
-     
-
-    Prescription<br/>
+           <div style ="text-align: center; font-family: 'Arial Unicode MS' !important; font-size:35pt; font-weight: bold;">
+    Рецепт<br/>
     </div>
     
-    <span style="font-family: Verdana, sans-serif; font-size:11pt; text-align: left; display: inline-block; width: 35%;">
+    <span style="font-family: 'Arial Unicode MS' !important; font-size:11pt; text-align: left; display: inline-block; width: 35%;">
         
-        <apex:outputLabel value="Date: "/>
+        <apex:outputLabel value="Дата: "/>
         <apex:outputText value="{0,date,dd'-'MM'-'yyyy}">
           <apex:param value="{!Today()}"/>
         </apex:outputText>
         <br/>
-        <apex:outputLabel for="name" value="Patient Name: "/>
+        <apex:outputLabel for="name" value="Ім'я пацієнта: "/>
         <apex:outputText id="name" value="{!patientName}" />
         <br/>
         
@@ -147,13 +157,13 @@
       <br/>
       <br/>
       <div style="page-break-inside : auto; page-break-after:auto;">
-        <h2>List Of Medicines</h2>
+        <h2 style="font-family: 'Arial Unicode MS' !important;">Список медикаментів</h2>
         <table class="gridtable" >
             <tr>
-                <th>Medication Name</th>
-                <th>Medication Dosage</th>
-                <th>Dosage Form</th>
-                <th>Frequency</th>
+                <th style="font-family: 'Arial Unicode MS' !important;">Назва препарату</th>
+                <th style="font-family: 'Arial Unicode MS' !important;">Дозування</th>
+                <th style="font-family: 'Arial Unicode MS' !important;">Форма дозування</th>
+                <th style="font-family: 'Arial Unicode MS' !important;">Частота</th>
               </tr>
             <apex:repeat value="{!medicineWrapperList}" var="listitem" >
               <tr>
@@ -179,9 +189,9 @@
   </apex:pageBlock>
         </div>
 
-        <div style="margin-top: 20px;margin-left: 15px;">
-            <apex:outputLabel for="name" value="Doctor Name: " style="margin: 20px;"/>
-            <apex:outputText  value="{!doctorName}" />
+        <div style="margin-top: 20px;margin-left: 15px; font-family: 'Arial Unicode MS' !important;">
+            <apex:outputLabel for="name" value="Ім'я лікаря: " style="margin: 20px; font-family: 'Arial Unicode MS' !important;"/>
+            <apex:outputText value="{!doctorName}" style="font-family: 'Arial Unicode MS' !important;"/>
         </div>
 
 

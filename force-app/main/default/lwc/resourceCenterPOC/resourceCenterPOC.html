@@ -1,0 +1,110 @@
+<!--
+  @description       : 
+  @author            : nazar.tsybulskii@redtag.pro
+  @group             : 
+  @last modified on  : 16-10-2025
+  @last modified by  : stepan.halaiko@redtag.pro
+-->
+<template>
+    <lightning-spinner alternative-text="Завантаження" if:true={loaded}></lightning-spinner>
+    <template if:false={loaded}>
+        <lightning-card>
+            <div style="overflow: hidden;">
+                <lightning-modal-header>
+                    <div class="slds-card__header">
+                        <div class="slds-grid slds-grid_vertical">
+                            <div class="slds-col">
+                                <div class="slds-grid slds-p-bottom_large">
+                                    <div class=" slds-col slds-media__figure slds-grid slds-size_3-of-12">
+                                        <div class="slds-col slds-size_2-of-12">
+                                        </div>
+                        <div style="font-size: 18px; font-weight: 600; padding-left: 7px; padding-top: 10px;">
+                            Центр ресурсів
+                        </div>
+                                    </div>
+                                    <div class="slds-col">
+                                        <div class="slds-grid_vertical slds-grid ">
+                                            <div class="slds-col">
+                                                <lightning-button-menu alternative-text="Глобальні дії" variant="border-filled" label="Глобальні дії" menu-alignment="right" class="slds-float_right">
+                                                    <lightning-menu-item value="Download" label="Завантажити" onclick={handleDownload} disabled={isselected}></lightning-menu-item>
+                                                </lightning-button-menu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col path">
+                                <div class="slds-grid slds-p-left_x-small slds-scrollable_x">
+                                    <template for:each={folderPath} for:item="pathItem">
+                                        <div key={pathItem.id} class="path-Item slds-col slds-grow-none" data-id={pathItem.id} onclick={goToPathHandler} ondrop={handlerOnDropPath} ondragover={handlerOnDragOver}>
+                                            <div style="font-size: 16px; font-weight: 600;" class="slds-float_left" data-id={pathItem.id}>
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-p-top_x-small slds-grow-none"  data-id={pathItem.id} style="white-space: nowrap;">
+                                                       {pathItem.name}
+                                                    </div>
+                                                    <div class="slds-col slds-grow-none">
+                                                        <lightning-icon  icon-name="utility:chevronright" alternative-text="Навігація" title="Навігація" style="height: 10px;" data-id={pathItem.id}>
+                                                        </lightning-icon>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-modal-header>
+            </div>
+            
+            
+            <div class="slds-card__body slds-card__body_inner slds-p-top_x-small" style="padding-left: 10px; padding-right: 10px;">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_3-of-12">
+                        <c-rc-filter-panel onfilterchange={handleFilterChange} class="slds-m-top_medium"></c-rc-filter-panel>
+                    </div>
+                    <div class="slds-col slds-size_9-of-12">
+                    <template if:false={loaded}>
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="header-content slds-col slds-p-buttom_x-small" style="padding-bottom: 10px;">
+                                    <div class="slds-grid">
+                                        <div class="slds-col slds-size_1-of-12" style="margin-left: 9px;">
+                                        </div>
+                                        <div class="slds-col slds-size_5-of-12" >
+                                            <div class="slds-float_left" style="margin-left:4px; font-size: 16px; font-weight: 600">
+                                                Назва
+                                            </div>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-12">
+                                            <div class="slds-float_left" style="font-size: 16px; font-weight: 600">
+                                                Остання зміна
+                                            </div>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12">
+                                            <div class="slds-float_left" style="font-size: 16px; font-weight: 600">
+                                                Дата створення
+                                            </div>
+                                        </div>
+                                         <div class="slds-col slds-size_1-of-12">
+                                            <div class="slds-float_left" style="font-size: 16px; font-weight: 600">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-scrollable_y" style="height: 360px;">
+                                    <template for:each={data} for:item="item">
+                                        <c-rc-file-row key={item.id} file={item} selected={item.selected} selected-pdfs={selectedPdfItems} actions={rowActions} onrowaction={handleRowAction} onopen={handleRowOpen} onclick={handleRowClick}></c-rc-file-row>
+                                    </template>
+                                </div>
+                            </div>
+                    </template>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_12-of-12 slds-m-top_medium">
+                <c-merger-pdf></c-merger-pdf>
+            </div>
+        </lightning-card>
+    </template>
+</template>
